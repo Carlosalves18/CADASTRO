@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import {Button, Form } from "./styled.js"
+import {Button, Form, Title,FormGroup,Label, Input,Select,Textarea, P} from "./styled.js"
 
 const CadasForm = () => {
 
@@ -43,51 +43,55 @@ const CadasForm = () => {
 
   return (
     <Form onSubmit={handlePost}>
-    
-        <h3>
-        Nome do Sargento ou Cabo
-        </h3>
-        <input 
-            type="text" 
+
+    <Title>Cadastro de Atendimento</Title>
+
+    <FormGroup>
+          <Label htmlFor="sargento">Sargento / Cabo</Label>
+          <Input type="text" 
             placeholder="Digite o nome do Sargento ou do Cabo" 
             value={sagentCabo}
             onChange={(e) => setSagentCabo(e.target.value)}
             required />
-
-     
-        <h3>Equipe</h3>
-        <input 
-            type="text" 
+        </FormGroup>
+        <br />
+        <FormGroup>
+          <Label htmlFor="equipe">Equipe</Label>
+          <Input type="text" 
             placeholder="Digite o nome da equipe"
             value={equipe}
             onChange={(e) => setEquipe(e.target.value)}
-            />
-
-        <h3>Concluido</h3>
-        <select name="concluido" id="concluido">
-          <option value="true" >sim</option>
-          <option value="false">não</option>
-        </select>
+            /> 
+        </FormGroup>
+        <br />
+          <FormGroup> 
+        <Select name="concluido" id="concluido">
+          <option value="true" >Sim</option>
+          <option value="false">Não</option>
+        </Select>
+        </FormGroup>  
         {/* <Form.Control 
             type="text" 
             placeholder="Sim / Não"
             value={concluido}
             onChange={(e) => setConcluido(e.target.value)}
             /> */}
+          <FormGroup>
 
-        <h3>Qual foi a solução aplicada?</h3>
-        <input 
-            type="textarea" 
+          <Label htmlFor="solucao">Qual foi a solução aplicada?</Label>
+          <Textarea  
             placeholder="Digite qual foi a solução aplicada"
             value={solucaoAplic}
             onChange={(e) => setSAplic(e.target.value)}
-            />
-
+          />
+        </FormGroup>
+        <br />
+        {message ? <P>{message}</P> : <P>{loading}</P>}
 
       <Button type="submit">
         ENVIAR
       </Button>
-      {message ? <p>{message}</p> : <p>{loading}</p>}
+      
     </Form>
   
   )
